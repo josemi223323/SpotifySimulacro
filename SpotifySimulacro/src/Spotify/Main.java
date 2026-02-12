@@ -39,7 +39,6 @@ public class Main {
 		int contadorMusica = 0;
 		int contadorAudioLibro = 0;
 		int contadorMeditacion = 0;
-		int contadorDuracion = 0;
 		for(Contenido contenido : contenidos) {
 			if(contenido instanceof Cancion) {
 				contadorCanciones++;
@@ -58,7 +57,6 @@ public class Main {
 			}else if(contenido.getCategoria().equalsIgnoreCase("meditacion")) {
 				contadorMeditacion++;
 			}
-			contadorDuracion += contenido.getMinutos();
 			
 		}
 		int contadorMinutos = 0;
@@ -77,9 +75,9 @@ public class Main {
 		
 	}
 	private static void aniadirAPlaylist() {
-		String cancionBuscada = lectorString.lector("introduce la cancion que buscas");
+		String cancionBuscada = lectorString.lector("introduce la cancion que buscas para meter en la playlist");
 		for(Contenido contenido : contenidos) {
-			if(!contenido.isReproducionActiva() && contenido.getTitulo().equals(cancionBuscada)) {
+			if(!contenido.isReproducionActiva() && contenido.getTitulo().equalsIgnoreCase(cancionBuscada)) {
 				contenido.setReproducionActiva(true);
 				contadorPlayList ++;
 				System.out.println("la cancion dura: " + contenido.getMinutos());
@@ -94,7 +92,7 @@ public class Main {
 			categoriaBuscada = lectorString.lector("introduce una categoria buscada");
 		}
 		for(Contenido contenido : contenidos) {
-			if(contenido.getCategoria().equals(categoriaBuscada)) {
+			if(contenido.getCategoria().equalsIgnoreCase(categoriaBuscada)) {
 				System.out.println(contenido.toString());
 			}
 		}
